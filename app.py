@@ -12,12 +12,13 @@ from pymongo import Connection
 
 app = Flask(__name__)
 
+c = MongoClient(server % (username, password))
+print c
+
 @app.route('/')
 def homepage():
 
-    return """
-    <h1>Hello this is the main page of our API</h1>
-    """
+    return "<h1>Hello this is the main page of our API</h1> "
 @app.route('/login')
 def loginpage():
 
