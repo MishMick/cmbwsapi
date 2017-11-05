@@ -11,8 +11,10 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-c = MongoClient(server % (username, password))
-print (c)
+uri = "mongodb://"+username+":"+password+"@"+server
+client = MongoClient(uri)
+
+print (client)
 
 @app.route('/')
 def homepage():
