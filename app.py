@@ -15,7 +15,7 @@ uri = "mongodb://"+username+":"+password+"@"+server
 client = MongoClient(uri)
 
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
-print (client)
+print (client.server_info())
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 
