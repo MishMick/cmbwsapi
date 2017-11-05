@@ -17,23 +17,10 @@ print (c)
 
 @app.route('/')
 def homepage():
-
     return "<h1>Hello this is the main page of our API</h1> "
+    
 @app.route('/login')
 def loginpage():
-
-# connect to server
-print '\nConnecting ...'
-conn = Connection(server, port)
-
-# Get the database
-print '\nGetting database ...'
-db = conn[db_name]
-
-# Have to authenticate to get access
-print '\nAuthenticating ...'
-db.authenticate(username, password)
-
 	return """
 	<h1>Login page</h1>
 	"""
