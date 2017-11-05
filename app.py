@@ -1,4 +1,4 @@
-# Use a database already created on mongolab 
+#MONGOLAB SERVER DETAILS 
 server = 'ds149335.mlab.com:49335/cmbwsapi'
 port = 41875
 db_name = 'cmbwsdb'
@@ -11,58 +11,39 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
+#DEFINE URL FOR MONGODB SERVER
 uri = "mongodb://"+username+":"+password+"@"+server
 client = MongoClient(uri)
 
-print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
-print (client.server_info())
-print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-
+#GET DATABASE AND TABLE NAME
 db=client.cmbwsapi
 usersCollection = db.users
 
+#INDEX PAGE
 @app.route('/')
 def index():
     return "Women Safety APP"
 
-@app.route('/userExists/<int:psid>', methods=['GET'])
-def userExists(psid):
-    if psid == 1:
-    	return "test"
-    else:
-    	return "ps != 1"
-
-@app.route('/validate/<int:psid>/<string:pwd>', methods=['GET'])
-def validate(psid,pwd):
-
-    data= usersCollection.find_one({'psid': psid})
-    
-    if (data['pwd'][0].encode("utf-8") == pwd):
-        return "True"
-
-    return "False"
-
-
- 
-@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['GET'])
+#REGISTER ENDPOINT
+@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['POST'])
 def register(psid,pwd,role):
     user = {
         'psid' : [psid],
         'pwd' : [pwd],
         'role' : [role] 
     }
-
     result=usersCollection.insert_one(user)
     return 'Debug : Created ' + str(result.inserted_id)
 
-
-@app.route('/login')
+#LOGIN ENDPOINT
+@app.route('/login', methods=['POST'])
 def loginpage():
-	return """
-	<h1>Login page</h1>
-	"""
+	psid = request.form['psid']
+    password = request.form['password']
+    print ('User logging in' + psid + password)
+    return "true"
 
+#MAIN
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
 
