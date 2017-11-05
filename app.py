@@ -5,7 +5,7 @@ db_name = 'cmbwsdb'
 username = 'ishan'
 password = 'ishan'
 
-from flask import Flask
+from flask import Flask, session, redirect, url_for, escape, request
 from datetime import datetime
 from pymongo import MongoClient
 
@@ -39,6 +39,7 @@ def register(psid,pwd,role):
 @app.route('/login', methods=['POST'])
 def loginpage():
 	print ("I am printing request.method:" + request.method)
+
 	if request.method == 'POST':
 		psid = request.form['psid']
 		password = request.form['password']
