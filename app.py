@@ -38,10 +38,7 @@ def register(psid,pwd,role):
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-<<<<<<< HEAD
 	print (request.method)
-=======
->>>>>>> a6e8bc3613c95614d954dbf3d3989b9b60d7652f
 	if request.method == 'POST':
 		psid = request.form['psid']
 		password = request.form['password']
@@ -51,7 +48,3 @@ def loginpage():
 #MAIN
 if __name__ == '__main__':
 	app.run(debug=True, use_reloader=True)
-<<<<<<< HEAD
-=======
-
->>>>>>> a6e8bc3613c95614d954dbf3d3989b9b60d7652f
