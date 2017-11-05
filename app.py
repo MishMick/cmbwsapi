@@ -17,6 +17,8 @@ client = MongoClient(uri)
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
 print (client)
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
+db=client.db_name
+print ("Database name "+db)
 
 @app.route('/')
 def homepage():
