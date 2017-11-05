@@ -1,5 +1,5 @@
 # Use a database already created on mongolab 
-server = 'ds149335.mlab.com'
+server = 'ds149335.mlab.com:49335'
 port = 41875
 db_name = 'cmbwsdb'
 username = 'ishan'
