@@ -45,7 +45,7 @@ def validate(psid,pwd):
 
 
  
-@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['POST'])
+@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['GET'])
 def register(psid,pwd,role):
     user = {
         'psid' : [psid],
