@@ -22,28 +22,29 @@ usersCollection = db.users
 #INDEX PAGE
 @app.route('/')
 def index():
-    return "Women Safety APP"
+	return "Women Safety APP"
 
 #REGISTER ENDPOINT
 @app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['POST'])
 def register(psid,pwd,role):
-    user = {
+	user = {
         'psid' : [psid],
         'pwd' : [pwd],
         'role' : [role] 
-    }
-    result=usersCollection.insert_one(user)
-    return 'Debug : Created ' + str(result.inserted_id)
+	}
+	result=usersCollection.insert_one(user)
+	return 'Debug : Created ' + str(result.inserted_id)
 
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-	psid = request.form['psid']
-    password = request.form['password']
-    print ('User logging in' + psid + password)
-    return "true"
+	print (request.method)
+	if request.method == 'POST':
+		psid = request.form['psid']
+		password = request.form['password']
+		print ('User logging in' + psid + password)
+		return "true"
 
 #MAIN
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
-
+	app.run(debug=True, use_reloader=True)
