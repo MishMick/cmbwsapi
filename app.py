@@ -13,7 +13,7 @@ from pymongo import Connection
 app = Flask(__name__)
 
 c = MongoClient(server % (username, password))
-print c
+print (c)
 
 @app.route('/')
 def homepage():
