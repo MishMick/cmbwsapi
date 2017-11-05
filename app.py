@@ -14,7 +14,9 @@ app = Flask(__name__)
 uri = "mongodb://"+username+":"+password+"@"+server
 client = MongoClient(uri)
 
+print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
 print (client)
+print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 @app.route('/')
 def homepage():
