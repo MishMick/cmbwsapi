@@ -17,8 +17,7 @@ client = MongoClient(uri)
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
 print (client)
 print ("!!!!!!!!!!!!!!!!!!!!!!!!!")
-db=client.db_name
-print ("Database name "+db)
+
 
 db=client.cmbwsapi
 usersCollection = db.users
