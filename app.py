@@ -38,7 +38,7 @@ def register(psid,pwd,role):
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-	print (request.method)
+	print ("I am printing request.method:" + request.method)
 	if request.method == 'POST':
 		psid = request.form['psid']
 		password = request.form['password']
