@@ -44,9 +44,9 @@ def loginpage():
 		pwd = request.form['password']
 		print ('User logging in' + psid + pwd)
 		data= usersCollection.find_one({'psid': psid})
-    	if (data['pwd'][0].encode("utf-8") == pwd):
-        	return "true"
-		return "false"
+			if (data['pwd'][0].encode("utf-8") == pwd):
+        		return "true"
+			return "false"
 
 #MAIN
 if __name__ == '__main__':
