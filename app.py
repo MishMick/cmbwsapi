@@ -42,7 +42,10 @@ def loginpage():
 		psid = request.form['psid']
 		pwd = request.form['password']
 		print ('User logging in' + psid + pwd)
-		return "true"
+		if psid == '43990120'
+			return "true"
+		else if psid == '43990117'
+			return "false"
 
 #MAIN
 if __name__ == '__main__':
