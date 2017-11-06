@@ -1,7 +1,7 @@
 #MONGOLAB SERVER DETAILS 
 server = 'ds149335.mlab.com:49335/cmbwsapi'
 port = 41875
-db_name = 'cmbwdb'
+db_name = 'cmbwsdb'
 username = 'ishan'
 password = 'ishan'
 
@@ -16,7 +16,7 @@ uri = "mongodb://"+username+":"+password+"@"+server
 client = MongoClient(uri)
 
 #GET DATABASE AND TABLE NAME
-db=client.cmbwapi
+db=client.cmbwsapi
 usersCollection = db.users
 
 #INDEX PAGE
