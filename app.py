@@ -44,7 +44,7 @@ def loginpage():
 		print ('User logging in' + psid + pwd)
 		if psid == "43990120":
 			return "true"
-		else if psid == "43990117":
+		elif psid == "43990117":
 			return "false"
 
 #MAIN
