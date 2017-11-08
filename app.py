@@ -32,13 +32,13 @@ def register(psid,pwd,managerName,managerContact):
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
-        'psid' : [psid],
-        'pwd' : [pwd],
-        'managerName' : [managerName],
-	'managerContact' : [managerContact]
+		'psid' : [psid],
+		'pwd' : [pwd],
+		'managerName' : [managerName],
+		'managerContact' : [managerContact]
 	}
 	result=usersCollection.insert_one(user)
-	return 'Debug : Created ' + str(result.inserted_id)
+	return 'true'
 
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
