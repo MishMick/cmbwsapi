@@ -26,15 +26,16 @@ def index():
 
 #REGISTER ENDPOINT
 @app.route('/register', methods=['POST'])
-def register(psid,pwd,role):
+def register(psid,pwd,managerName,managerContact):
 	psid = int(request.form['psid'])
 	pwd = request.form['password']
-	role = request.form['role']
-
+	managerName = request.form['managerName']
+        managerContact = request.form['managerContact']
 	user = {
         'psid' : [psid],
         'pwd' : [pwd],
-        'role' : [role] 
+        'managerName' : [managerName],
+	'managerContact' : [managerContact]
 	}
 	result=usersCollection.insert_one(user)
 	return 'Debug : Created ' + str(result.inserted_id)
