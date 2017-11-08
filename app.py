@@ -25,12 +25,17 @@ def index():
 	return "Women Safety APP"
 
 #REGISTER ENDPOINT
-@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['GET'])
-def register(psid,pwd,role):
+@app.route('/register', methods=['POST'])
+def register(psid,pwd,managerName,managerContact):
+	psid = int(request.form['psid'])
+	pwd = request.form['password']
+	managerName = request.form['managerName']
+	managerContact = request.form['managerContact']
 	user = {
-        'psid' : [psid],
-        'pwd' : [pwd],
-        'role' : [role] 
+	'psid' : [psid],
+	'pwd' : [pwd],
+	'managerName' : [managerName],
+	'managerContact' : [managerContact]
 	}
 	result=usersCollection.insert_one(user)
 	return 'Debug : Created ' + str(result.inserted_id)
@@ -38,14 +43,13 @@ def register(psid,pwd,role):
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-	if request.method == 'POST':
-		psid = request.form['psid']
-		pwd = request.form['password']
-		print ('User logging in' + psid + pwd)
-		if psid == "43990120":
-			return "true"
-		elif psid == "43990117":
-			return "false"
+	psid = int(request.form['psid'])
+	pwd = request.form['password']
+	
+	data= usersCollection.find_one({'psid': psid})
+	if (data['pwd'][0].encode("utf-8") == pwd):
+		return "true"
+	return "false"
 
 #MAIN
 if __name__ == '__main__':
