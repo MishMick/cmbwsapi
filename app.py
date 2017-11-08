@@ -32,9 +32,9 @@ def register(psid,pwd,managerName,managerContact):
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
-	'psid' : [psid],
-	'pwd' : [pwd],
-	'managerName' : [managerName],
+        'psid' : [psid],
+        'pwd' : [pwd],
+        'managerName' : [managerName],
 	'managerContact' : [managerContact]
 	}
 	result=usersCollection.insert_one(user)
@@ -45,7 +45,6 @@ def register(psid,pwd,managerName,managerContact):
 def loginpage():
 	psid = int(request.form['psid'])
 	pwd = request.form['password']
-	
 	data= usersCollection.find_one({'psid': psid})
 	if (data['pwd'][0].encode("utf-8") == pwd):
 		return "true"
