@@ -26,8 +26,8 @@ def index():
 
 #REGISTER ENDPOINT
 @app.route('/register', methods=['POST'])
-def register(psid,pwd,managerName,managerContact):
-	psid = int(request.form['psid'])
+def register():
+	psid = request.form['psid']
 	pwd = request.form['password']
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
