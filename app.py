@@ -25,8 +25,12 @@ def index():
 	return "Women Safety APP"
 
 #REGISTER ENDPOINT
-@app.route('/register/<int:psid>/<string:pwd>/<string:role>', methods=['GET'])
+@app.route('/register', methods=['POST'])
 def register(psid,pwd,role):
+	psid = int(request.form['psid'])
+	pwd = request.form['password']
+	role = request.form['role']
+
 	user = {
         'psid' : [psid],
         'pwd' : [pwd],
@@ -38,14 +42,13 @@ def register(psid,pwd,role):
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-	if request.method == 'POST':
-		psid = request.form['psid']
-		pwd = request.form['password']
-		print ('User logging in' + psid + pwd)
-		if psid == "43990120":
-			return "true"
-		elif psid == "43990117":
-			return "false"
+	psid = int(request.form['psid'])
+	pwd = request.form['password']
+	
+	data= usersCollection.find_one({'psid': psid})
+	if (data['pwd'][0].encode("utf-8") == pwd):
+		return "True"
+	return "False"
 
 #MAIN
 if __name__ == '__main__':
