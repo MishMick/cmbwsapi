@@ -43,7 +43,7 @@ def register():
 #LOGIN ENDPOINT
 @app.route('/login', methods=['POST'])
 def loginpage():
-	psid = int(request.form['psid'])
+	psid = request.form['psid']
 	pwd = request.form['password']
 	data= usersCollection.find_one({'psid': psid})
 	if (data['pwd'][0].encode("utf-8") == pwd):
