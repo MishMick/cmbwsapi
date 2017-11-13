@@ -18,6 +18,7 @@ client = MongoClient(uri)
 #GET DATABASE AND TABLE NAME
 db=client.cmbwsapi
 usersCollection = db.users
+lateStayCollection = db.latestay
 
 #INDEX PAGE
 @app.route('/')
@@ -29,11 +30,15 @@ def index():
 def register():
 	psid = request.form['psid']
 	pwd = request.form['password']
+	name = request.form['name']
+	building = request.form['building']
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
 		'psid' : [psid],
 		'pwd' : [pwd],
+		'name' : [name],
+		'building' : [building],
 		'managerName' : [managerName],
 		'managerContact' : [managerContact]
 	}
@@ -50,6 +55,24 @@ def loginpage():
 	if (data['pwd'][0] == pwd):
 		return "true"
 	return "false"
+
+#LOGS FOR LATE STAY 
+@app.route('/latestay', methods=['POST'])
+def lateStay():
+	psid = request.form['psid']
+	reason = request.form['reason']
+	date = request.form['date']
+	travellingTo = request.form['travellingTo']
+	travellingBy = request.form['travellingBy']
+	latestay = {
+		'psid' : [psid],
+		'reason' : [reason],
+		'date' : [date],
+		'travellingTo' : [travellingTo],
+		'travellingBy' : [travellingBy]
+	}
+	result=lateStayCollection.insert_one(latestay)
+	return 'true'
 
 #MAIN
 if __name__ == '__main__':
