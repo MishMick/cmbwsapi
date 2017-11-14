@@ -33,7 +33,7 @@ def register():
 	pwd = request.form['password']
 	# hashing the password
 	m = hashlib.md5()
-	m.update(pwd)
+	m.update(pwd.encode('utf-8'))
 	pwd = m.hexdigest()
 	#name = request.form['name']
 	#building = request.form['building']
@@ -56,7 +56,7 @@ def loginpage():
 	psid = request.form['psid']
 	pwd = request.form['password']
 	m = hashlib.md5()
-	m.update(pwd)
+	m.update(pwd.encode('utf-8'))
 	pwd = m.hexdigest()
 	data= usersCollection.find_one({'psid': psid})
 	try:
