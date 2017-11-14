@@ -54,6 +54,8 @@ def loginpage():
 	try:
 		if (data['pwd'][0] == pwd):
 			return str(data)
+		else:
+			return "false"
 	except:
 		return "false"
 
