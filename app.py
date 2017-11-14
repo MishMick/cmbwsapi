@@ -53,7 +53,7 @@ def loginpage():
 	data= usersCollection.find_one({'psid': psid})
 	try:
 		if (data['pwd'][0] == pwd):
-			return "true"
+			return str(data)
 	except:
 		return "false"
 
