@@ -51,7 +51,6 @@ def loginpage():
 	psid = request.form['psid']
 	pwd = request.form['password']
 	data= usersCollection.find_one({'psid': psid})
-	print(psid,pwd,data['pwd'][0])
 	if (data['pwd'][0] == pwd):
 		return "true"
 	return "false"
