@@ -51,9 +51,11 @@ def loginpage():
 	psid = request.form['psid']
 	pwd = request.form['password']
 	data= usersCollection.find_one({'psid': psid})
-	if (data['pwd'][0] == pwd):
-		return "true"
-	return "false"
+	try:
+		if (data['pwd'][0] == pwd):
+			return "true"
+	except:
+		return "false"
 
 #LOGS FOR LATE STAY 
 @app.route('/latestay', methods=['POST'])
