@@ -65,6 +65,8 @@ def loginpage():
 			data = data.replace('[','')
 			data = data.replace(']','')
 			data = data.replace("'",'"')
+			data = data.replace(')','')
+			data = data.replace('ObjectId(','')
 			return str(data)
 		else:
 			return "false"
