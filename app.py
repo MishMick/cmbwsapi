@@ -61,6 +61,10 @@ def loginpage():
 	data= usersCollection.find_one({'psid': psid})
 	try:
 		if (data['pwd'][0] == pwd):
+			data = str(data)
+			data = data.replace('[','')
+			data = data.replace(']','')
+			data = data.replace("'",'"')
 			return str(data)
 		else:
 			return "false"
