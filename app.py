@@ -30,15 +30,15 @@ def index():
 def register():
 	psid = request.form['psid']
 	pwd = request.form['password']
-	#name = request.form['name']
-	#building = request.form['building']
+	name = request.form['name']
+	building = request.form['building']
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
 		'psid' : [psid],
 		'pwd' : [pwd],
-		 #'name' : [name],
-		 #'building' : [building],
+		'name' : [name],
+		'building' : [building],
 		'managerName' : [managerName],
 		'managerContact' : [managerContact]
 	}
