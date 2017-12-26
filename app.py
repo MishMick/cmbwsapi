@@ -8,6 +8,7 @@ password = 'ishan'
 from flask import Flask, session, redirect, url_for, escape, request
 from datetime import datetime
 from pymongo import MongoClient
+import hashlib
 
 app = Flask(__name__)
 
@@ -30,6 +31,10 @@ def index():
 def register():
 	psid = request.form['psid']
 	pwd = request.form['password']
+	# hashing the password
+	m = hashlib.md5()
+	m.update(pwd.encode('utf-8'))
+	pwd = m.hexdigest()
 	name = request.form['name']
 	building = request.form['building']
 	managerName = request.form['managerName']
@@ -50,10 +55,21 @@ def register():
 def loginpage():
 	psid = request.form['psid']
 	pwd = request.form['password']
+	m = hashlib.md5()
+	m.update(pwd.encode('utf-8'))
+	pwd = m.hexdigest()
 	data= usersCollection.find_one({'psid': psid})
 	try:
 		if (data['pwd'][0] == pwd):
-			return "true"
+			data = str(data)
+			data = data.replace('[','')
+			data = data.replace(']','')
+			data = data.replace("'",'"')
+			data = data.replace(')','')
+			data = data.replace('ObjectId(','')
+			return str(data)
+		else:
+			return "false"
 	except:
 		return "false"
 
