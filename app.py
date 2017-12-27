@@ -37,6 +37,7 @@ def register():
 	pwd = m.hexdigest()
 	name = request.form['name']
 	building = request.form['building']
+	image = request.form['image']
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
@@ -44,6 +45,7 @@ def register():
 		'pwd' : [pwd],
 		'name' : [name],
 		'building' : [building],
+		'image' : [image],
 		'managerName' : [managerName],
 		'managerContact' : [managerContact]
 	}
