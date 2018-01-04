@@ -37,6 +37,7 @@ def register():
 	pwd = m.hexdigest()
 	name = request.form['name']
 	building = request.form['building']
+	image = request.form['image']
 	managerName = request.form['managerName']
 	managerContact = request.form['managerContact']
 	user = {
@@ -44,6 +45,7 @@ def register():
 		'pwd' : [pwd],
 		'name' : [name],
 		'building' : [building],
+		'image' : [image],
 		'managerName' : [managerName],
 		'managerContact' : [managerContact]
 	}
@@ -90,6 +92,31 @@ def lateStay():
 	}
 	result=lateStayCollection.insert_one(latestay)
 	return 'true'
+
+@app.route('/listResources', methods=['POST'])
+def listResources():
+	managerName = request.form['managerName']
+	managerName = str(managerName)
+	data = []
+	try:
+		cursor= usersCollection.find({'managerName': managerName})
+		for doc in cursor:
+			doc = str(doc)
+			doc = doc.replace('[','')
+			doc = doc.replace(']','')
+			doc = doc.replace("'",'"')
+			doc = doc.replace(')','')
+			doc = doc.replace('ObjectId(','')
+			data.append(doc)
+		
+		if not doc:
+			return "NULL"
+
+		return str(data)
+	
+	except:
+		return "NULL"
+	
 
 #MAIN
 if __name__ == '__main__':
