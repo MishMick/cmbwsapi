@@ -5,7 +5,7 @@ db_name = 'cmbwsdb'
 username = 'ishan'
 password = 'ishan'
 
-from flask import Flask, session, redirect, url_for, escape, request
+#from flask import Flask, session, redirect, url_for, escape, request
 from datetime import datetime
 from pymongo import MongoClient
 import hashlib
@@ -120,4 +120,4 @@ def listResources():
 
 #MAIN
 if __name__ == '__main__':
-	app.run(debug=True, use_reloasder=True)
+	app.run(debug=True, use_reloader=True)
