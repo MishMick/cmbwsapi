@@ -5,7 +5,7 @@ db_name = 'cmbwsdb'
 username = 'ishan'
 password = 'ishan'
 
-#from flask import Flask, session, redirect, url_for, escape, request
+from flask import Flask, session, redirect, url_for, escape, request
 from datetime import datetime
 from pymongo import MongoClient
 import hashlib
